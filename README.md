@@ -7,7 +7,7 @@ It covers all core database operations  Create, Read, Update, and Delete — usi
 The project is designed as a console-based application and follows standard JDBC best practices, making it suitable for learning, interviews, and academic projects.
 
 ## 📂 Project Structure
-```
+```css
 kumleshkurre
 ├── JRE System Library [JavaSE-21]
 ├── src
@@ -23,7 +23,7 @@ kumleshkurre
 │   └── module-info.java
 ```
 ## 🔍 SELECT QUERY – First Program
-```
+```js
 package Staff;
 
 import java.sql.Connection;
@@ -62,8 +62,80 @@ public class Employeeselect {
 	    }
 	}
 ```
-## ➕ INSERT QUERY – First Program (Static Data)
+## ➕ SELECT QUERY – Second Program (User Input)
+```JS
+package Staff;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class SelectAllDataById {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		    Connection con = null;
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+	        Scanner sc = new Scanner(System.in);
+
+		        try {
+		        	 // Database Connection
+			    	String url= "jdbc:postgresql://localhost:5432/your_database_name";
+		    	    String user= "your_username";
+		    	    String pwd= "YOUR_PASSWORD";
+		            con = DriverManager.getConnection(url,user,pwd);
+
+		            //  User se ID input
+		            System.out.print("Enter ID: ");
+		            int id = sc.nextInt();
+
+		            //  Create connection
+		            con = DriverManager.getConnection(url, user, pwd);
+		            System.out.println("Connection Successful");
+
+		            //  SQL Query (ALL data by ID)
+		            String sql = "SELECT * FROM contact WHERE id = ?";
+		            ps = con.prepareStatement(sql);
+		            ps.setInt(1, id);
+
+		            //  Execute query
+		            rs = ps.executeQuery();
+
+		            //  Read & print ALL columns
+		            if (rs.next()) {
+		                System.out.println("----- Employee Details -----");
+		                System.out.println("ID     : " + rs.getInt("id"));
+		                System.out.println("Name   : " + rs.getString("name"));
+		                System.out.println("Mobile : " + rs.getString("mobile"));
+		                // agar aur columns hain to yahan add kar sakta hai
+		                // System.out.println("City   : " + rs.getString("city"));
+		            } else {
+		                System.out.println("No record found for ID: " + id);
+		            }
+
+		        } catch (Exception e) {
+		            System.out.println("Error : " + e.getMessage());
+		        } finally {
+		            try {
+		                if (rs != null) rs.close();
+		                if (ps != null) ps.close();
+		                if (con != null) con.close();
+		                sc.close();
+		                System.out.println("Connection Closed");
+		            } catch (Exception e) {
+		                System.out.println("Close Error : " + e.getMessage());
+		            }
+		        }
+		    }
+		}
+
 ```
+## ➕ INSERT QUERY – First Program (Static Data)
+```js
 package Staff;
 
 import java.sql.Connection;
@@ -108,7 +180,7 @@ public class Employee {
 }
 ```
 ## ➕ INSERT QUERY – Second Program (User Input)
-```
+```js
 package Staff;
 
 import java.sql.Connection;
@@ -164,7 +236,7 @@ public class Employee2 {
 }
 ```
 ## ✏️ UPDATE QUERY – First Program (Fixed ID)
-```
+```js
 package Staff;
 
 import java.sql.Connection;
@@ -220,7 +292,7 @@ public class Employeeupdate {
 }
 ```
 ## ✏️ UPDATE QUERY – Second Program (User Input ID)
-```
+```js
 package Staff;
 
 import java.sql.Connection;
@@ -292,7 +364,7 @@ public class Employeeupdate2 {
 	}
 ```
 ## ❌ DELETE QUERY – First Program (Fixed ID)
-```
+```js
 package Staff;
 
 import java.sql.Connection;
@@ -332,7 +404,7 @@ public class Employeedel {
 }
 ```
 ## ❌ DELETE QUERY – Second Program (User Input)
-```
+```js
 package Staff;
 
 import java.sql.Connection;
