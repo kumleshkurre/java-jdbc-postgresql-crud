@@ -7,12 +7,13 @@ It covers all core database operations  Create, Read, Update, and Delete — usi
 The project is designed as a console-based application and follows standard JDBC best practices, making it suitable for learning, interviews, and academic projects.
 
 ## 📂 Project Structure
-```css
+```js
 kumleshkurre
 ├── JRE System Library [JavaSE-21]
 ├── src
 │   ├── Staff
 │   │   ├── EmployeeSelect.java
+│   │   ├── SelectAllDataById.java
 │   │   ├── Employee.java
 │   │   ├── Employee2.java
 │   │   ├── Employeeupdate.java
